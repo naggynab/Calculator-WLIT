@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0c13" />
+    <meta name="description" content="A tactile, cinematic calculator for quick calculations." />
+    <title>NOIR / Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=4" />
+    <script defer src="script.js?v=6"></script>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#calculator" aria-label="Noir calculator home">
+          <span class="brand-mark" aria-hidden="true">✳</span>
+          <span>NOIR<span class="brand-slash">/</span>CALC</span>
+        </a>
+        <div class="topbar-actions">
+          <span class="status-dot"><i></i> READY TO COMPUTE</span>
+          <button class="icon-button" id="themeToggle" type="button" aria-label="Switch color mode" title="Switch color mode">◐</button>
+        </div>
+      </header>
+
+      <section class="workspace" id="calculator">
+        <div class="intro">
+          <p class="eyebrow">A LITTLE MACHINERY FOR BIG THOUGHTS <span>— 001</span></p>
+          <h1>Make the<br /><em>numbers</em> sing.</h1>
+          <p class="intro-copy">A fast, tactile calculator with just enough character to make the everyday math feel less ordinary.</p>
+          <div class="shortcut-card">
+            <div class="shortcut-icon">⌘</div>
+            <div class="shortcut-copy">
+              <strong>Keyboard ready</strong>
+              <span class="shortcut-kicker">QUICK CONTROLS</span>
+              <div class="shortcut-list" aria-label="Keyboard shortcuts">
+                <div class="shortcut-row"><b>Clear all</b><span class="shortcut-keys"><kbd>C</kbd><kbd>Esc</kbd></span></div>
+                <div class="shortcut-row"><b>Calculate</b><span class="shortcut-keys"><kbd>Enter</kbd></span></div>
+                <div class="shortcut-row"><b>Delete last digit</b><span class="shortcut-keys"><kbd>Backspace</kbd></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="calculator-card" aria-label="Calculator">
+          <div class="calculator-head">
+            <span class="mini-label">LIVE DISPLAY</span>
+            <div class="head-status">
+              <span class="mini-label mono" id="memoryState">M EMPTY</span>
+              <span class="mini-label mono" id="calcState">IDLE</span>
+            </div>
+          </div>
+
+          <div class="display" aria-live="polite">
+            <div class="display-signal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><span>LIVE SIGNAL</span></div>
+            <div class="expression" id="expression">&nbsp;</div>
+            <div class="result-row">
+              <span class="result-caret">=</span>
+              <output class="result" id="result">0</output>
+            </div>
+          </div>
+
+          <div class="tool-row">
+            <span class="mini-label">SCIENTIFIC LAYER</span>
+            <button class="angle-toggle" id="angleToggle" type="button">DEG</button>
+          </div>
+
+          <div class="scientific-grid" role="group" aria-label="Scientific functions">
+            <button class="science-key" data-action="unary" data-function="sqrt" type="button">√x</button>
+            <button class="science-key" data-action="unary" data-function="square" type="button">x²</button>
+            <button class="science-key" data-value="^" type="button">xʸ</button>
+            <button class="science-key" data-action="unary" data-function="reciprocal" type="button">1/x</button>
+            <button class="science-key" data-action="unary" data-function="log" type="button">log</button>
+            <button class="science-key" data-action="unary" data-function="ln" type="button">ln</button>
+
+            <button class="science-key" data-action="unary" data-function="sin" type="button">sin</button>
+            <button class="science-key" data-action="unary" data-function="cos" type="button">cos</button>
+            <button class="science-key" data-action="unary" data-function="tan" type="button">tan</button>
+            <button class="science-key" data-action="unary" data-function="factorial" type="button">n!</button>
+            <button class="science-key" data-action="constant" data-value="pi" type="button">π</button>
+            <button class="science-key" data-action="constant" data-value="e" type="button">e</button>
+
+            <button class="science-key science-key-muted" data-value="(" type="button">(</button>
+            <button class="science-key science-key-muted" data-value=")" type="button">)</button>
+            <button class="science-key science-key-memory" data-action="memory" data-memory="clear" type="button">MC</button>
+            <button class="science-key science-key-memory" data-action="memory" data-memory="recall" type="button">MR</button>
+            <button class="science-key science-key-memory" data-action="memory" data-memory="add" type="button">M+</button>
+            <button class="science-key science-key-memory" data-action="memory" data-memory="subtract" type="button">M−</button>
+          </div>
+
+          <div class="keypad" role="group" aria-label="Calculator keypad">
+            <button class="key key-soft" data-action="clear" type="button" aria-keyshortcuts="C Escape">AC</button>
+            <button class="key key-soft" data-action="backspace" type="button" aria-label="Backspace">⌫</button>
+            <button class="key key-soft" data-value="%" type="button">%</button>
+            <button class="key key-operator" data-value="÷" type="button">÷</button>
+
+            <button class="key" data-value="7" type="button">7</button>
+            <button class="key" data-value="8" type="button">8</button>
+            <button class="key" data-value="9" type="button">9</button>
+            <button class="key key-operator" data-value="×" type="button">×</button>
+
+            <button class="key" data-value="4" type="button">4</button>
+            <button class="key" data-value="5" type="button">5</button>
+            <button class="key" data-value="6" type="button">6</button>
+            <button class="key key-operator" data-value="−" type="button">−</button>
+
+            <button class="key" data-value="1" type="button">1</button>
+            <button class="key" data-value="2" type="button">2</button>
+            <button class="key" data-value="3" type="button">3</button>
+            <button class="key key-operator" data-value="+" type="button">+</button>
+
+            <button class="key key-zero" data-value="0" type="button">0</button>
+            <button class="key" data-value="." type="button">.</button>
+            <button class="key key-equals" data-action="calculate" type="button">=</button>
+          </div>
+          <div class="calculator-foot">
+            <span>NOIR ENGINE <i></i> v1.0</span>
+            <button class="diagnostic-button" id="runDiagnostics" type="button">RUN ENGINE CHECK</button>
+            <span id="diagnosticResult">LOCAL / PRIVATE</span>
+          </div>
+        </div>
+
+        <aside class="history-panel" aria-label="Calculation history">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">MEMORY BANK</p>
+              <h2>Recent work</h2>
+            </div>
+            <button class="clear-history" id="clearHistory" type="button">Clear all</button>
+          </div>
+          <div class="history-list" id="historyList">
+            <div class="empty-history">
+              <span>∅</span>
+              <p>Your solved expressions<br />will land here.</p>
+            </div>
+          </div>
+          <div class="panel-note">Tip: click a result to bring it back.</div>
+        </aside>
+      </section>
+
+      <footer class="footer">
+        <span>DESIGNED FOR THE IN-BETWEENS</span>
+        <a href="https://github.com/your-username/noir-calculator" target="_blank" rel="noreferrer">VIEW SOURCE ON GITHUB <span aria-hidden="true">↗</span></a>
+        <span>© 2024 NOIR CALC</span>
+      </footer>
+    </main>
+  </body>
+</html>
